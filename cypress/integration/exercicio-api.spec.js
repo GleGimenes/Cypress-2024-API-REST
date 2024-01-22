@@ -1,9 +1,15 @@
 /// <reference types="cypress" />
+//DONE
+import contrato from '../contracts/usuarios.contract'
+
 let token
 
 describe('Testes da Funcionalidade Usuários', () => {
 
      it('Deve validar contrato de usuários', () => {
+          cy.request('usuarios').then((response) => {
+               return contrato.validateAsync(response.body);
+          });
           cy.request('usuarios').then((response) => {
                expect(response.status).to.equal(200);
                expect(response.body).to.have.property('usuarios');
