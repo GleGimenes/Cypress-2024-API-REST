@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 //DONE
 import contrato from '../contracts/usuarios.contract'
+import { faker } from '@faker-js/faker';
 
 let token
 
@@ -30,12 +31,13 @@ describe('Testes da Funcionalidade Usuários', () => {
      });
 
      it('Deve cadastrar um usuário com sucesso', () => {
+          let emailFake = faker.internet.email();
           cy.request({
                method: 'POST',
                url: 'usuarios',
                body: {
                     "nome": "João da silva Saurino",
-                    "email": "joaodoteste@doteste.com",
+                    "email": emailFake,
                     "password": "teste",
                     "administrador": "true"
                }
